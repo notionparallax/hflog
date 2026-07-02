@@ -1,0 +1,31 @@
+[CDAA-HF v1]
+report_id: 0193e9ea-b575-4874-8af5-71422cbab22b
+had_event: true
+imsafee: {illness: 1, medication: 1, stress: 2, alcohol: 1, fatigue: 2, eating: 2, emotion: 1}
+site_familiarity: first_time
+buddy_familiarity: occasional
+time_pressure: 2
+new_kit: "First time with new camera weight, slightly -ve now"
+event_count: 2
+event_1_type: other
+event_1_description: "Forgot how to tie off a reel/spool"
+event_1_severity: 2
+event_1_proximity: 2
+event_1_outcome: no_harm_near_miss
+event_2_type: buoyancy_loss
+event_2_description: "Couldn't reach my dump string because it was so inflated"
+event_2_severity: 1
+event_2_proximity: 1
+event_2_outcome: no_harm_near_miss
+classification: near_miss
+factors: [distraction, fatigue, stress]
+learning: "Task loading, stress, cold, probably shouldn't have taken the 360 camera"
+reflection_1_q: "Describe what happened and what you believe caused it."
+reflection_1_a: "I was swimming low, because of low vis"
+reflection_2_q: "What drew your attention away, and how did that affect the dive?"
+reflection_2_a: "I was cold (half an hour in the water during startup) and stressed (first dive without an instructor)"
+reflection_3_q: "How did fatigue affect your decision-making or execution on this dive?"
+reflection_3_a: "More of a driving home risk"
+reflection_4_q: "How did your stress level affect your performance during the dive?"
+reflection_4_a: "I couldn't remember how to tie off my lines"
+[/CDAA-HF]
