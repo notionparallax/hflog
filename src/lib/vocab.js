@@ -193,8 +193,7 @@ export const FACTORS = [
   { value: 'assertiveness', label: 'Assertiveness' },
   { value: 'stress',        label: 'Stress' },
   { value: 'awareness',     label: 'Awareness' },
-  { value: 'norms',         label: 'Norms' },
-];
+  { value: 'norms',         label: 'Norms' },  { value: 'cold',         label: 'Cold' },];
 
 // ─── Reflection prompts ───────────────────────────────────────────────────────
 // AI augmentation hook: replace getSuggestedQuestions() with a function that
