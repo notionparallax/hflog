@@ -144,6 +144,14 @@ export const PLAN_ADHERENCE_ANCHORS = [
   'Significant departure from the plan',
   'Substantially different from planned dive',
 ];
+
+export const SITE_FAMILIARITY = [
+  { value: 'first_time', label: 'First time' },
+  { value: 'return',     label: 'Return visit' },
+  { value: 'regular',    label: 'Regular — very familiar' },
+];
+
+export const BUDDY_FAMILIARITY = [
     { value: 'solo', label: 'Solo' },
     { value: 'stranger', label: 'Stranger' },
     { value: 'occasional', label: 'Occasional buddy' },
