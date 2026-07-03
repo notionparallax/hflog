@@ -15,8 +15,8 @@
 
   <div class="pair-row">
     <div class="field-row">
-      <label>Type</label>
-      <select bind:value={event.event_type}>
+      <label for="ev-type-{index}">Type</label>
+      <select id="ev-type-{index}" bind:value={event.event_type}>
         <option value="">— select —</option>
         {#each EVENT_TYPES as t}
           <option value={t.value}>{t.label}</option>
@@ -24,8 +24,8 @@
       </select>
     </div>
     <div class="field-row">
-      <label>Outcome</label>
-      <select bind:value={event.outcome}>
+      <label for="ev-outcome-{index}">Outcome</label>
+      <select id="ev-outcome-{index}" bind:value={event.outcome}>
         <option value="">— select —</option>
         {#each OUTCOMES as opt}
           <option value={opt.value}>{opt.label}</option>
@@ -60,7 +60,7 @@
   </div>
 
   <div class="field-row">
-    <label>Description</label>
-    <textarea rows="2" placeholder="Briefly describe what happened..." bind:value={event.event_description}></textarea>
+    <label for="ev-desc-{index}">Description</label>
+    <textarea id="ev-desc-{index}" rows="2" placeholder="Briefly describe what happened..." bind:value={event.event_description}></textarea>
   </div>
 </div>

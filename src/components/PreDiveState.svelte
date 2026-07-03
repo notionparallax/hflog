@@ -10,9 +10,22 @@
 
 <section class="card">
   <h2>Pre-Dive State</h2>
-  <!-- <p class="section-hint">Complete this immediately before entering the water.</p> -->
 
-  <h3>IMSAFEE check</h3>
+  <div class="imsafee-header">
+    <span class="imsafee-section-label">IMSAFEE</span>
+    <button type="button" class="tooltip-wrap">?
+      <span class="tooltip-box">
+        IMSAFEE is an aviation pre-flight readiness check adapted for diving.
+        Rate each factor 1–5 immediately before entering the water.
+        <br /><br />
+        <strong>I</strong>llness · <strong>M</strong>edication · <strong>S</strong>tress
+        · <strong>A</strong>lcohol · <strong>F</strong>atigue · <strong>E</strong>ating
+        · <strong>E</strong>motion
+        <br /><br />
+        Elevated scores provide pre-dive context for any events, and trigger reflection prompts.
+      </span>
+    </button>
+  </div>
   <div class="imsafee-fields">
     {#each IMSAFEE_FIELDS as field, i}
       <div class="imsafee-field">
@@ -32,8 +45,8 @@
 
   <hr />
 
-  <div class="field-row">
-    <label>Site familiarity</label>
+  <div class="inline-pill-row">
+    <span class="inline-pill-label">Site familiarity</span>
     <div class="radio-group">
       {#each SITE_FAMILIARITY as opt}
         <label class="radio-label">
@@ -44,8 +57,8 @@
     </div>
   </div>
 
-  <div class="field-row">
-    <label>Buddy / team</label>
+  <div class="inline-pill-row">
+    <span class="inline-pill-label">Buddy / team</span>
     <div class="radio-group">
       {#each BUDDY_FAMILIARITY as opt}
         <label class="radio-label">

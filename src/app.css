@@ -401,6 +401,27 @@ hr { border: none; border-top: 1px solid var(--color-border); margin: 18px 0; }
 }
 .remove-event-btn:hover { border-color: var(--color-incident); color: var(--color-incident); }
 
+/* ─── Inline pill rows (site/buddy familiarity) ─────────────────────────── */
+.inline-pill-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  margin-bottom: 8px;
+}
+.inline-pill-label { font-size: 13px; font-weight: 600; flex-shrink: 0; white-space: nowrap; }
+
+/* ─── Compact IMSAFEE header ─────────────────────────────────────────────── */
+.imsafee-header { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+.imsafee-section-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--color-text-muted);
+}
+
+/* ─── Event contributing factors (bottom of EventSection) ───────────────── */
+.event-factors { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--color-border); }
+.factors-subhead { font-weight: 400; font-size: 11px; text-transform: none; letter-spacing: 0; color: var(--color-text-muted); }
+
 /* ─── Mobile responsive ──────────────────────────────────────────────── */
 @media (max-width: 520px) {
   .app-main { padding: 0 10px 60px; margin-top: 16px; }

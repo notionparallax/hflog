@@ -22,8 +22,8 @@
 <section class="card output-card">
   <h2>Report Block</h2>
   <p class="section-hint">
-    Copy this block and paste it into the <strong>Notes</strong> field of this dive in Subsurface.
-    It coexists safely with any free text already in Notes.
+    Copy this block and paste it into the <strong>Notes</strong> field for this dive in your dive log.
+    It coexists safely with any free text already there.
   </p>
   <div class="output-actions">
     <button type="button" class="copy-btn" class:copied onclick={copy}>

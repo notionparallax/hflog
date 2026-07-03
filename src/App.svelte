@@ -4,7 +4,6 @@
   import { serialize } from './lib/serialize.js';
   import PreDiveState from './components/PreDiveState.svelte';
   import EventSection from './components/EventSection.svelte';
-  import HumanFactors from './components/HumanFactors.svelte';
   import ReflectionPrompts from './components/ReflectionPrompts.svelte';
   import OutputBlock from './components/OutputBlock.svelte';
 
@@ -54,16 +53,12 @@
 
 <main class="app-main">
   <div class="page-title">
-    <div>
-      <h1>Human Factors Log</h1>
-      <p class="page-subtitle">Confidential post-dive safety logging</p>
-    </div>
-    <button type="button" class="btn-new" onclick={reset}>New Report</button>
+    <h1>Human Factors Log</h1>
+    <p class="page-subtitle">Confidential post-dive safety logging</p>
   </div>
 
   <PreDiveState {state} />
   <EventSection {state} {newEvent} />
-  <HumanFactors {state} />
   <ReflectionPrompts {state} questions={suggestedQuestions} />
   <OutputBlock {blockString} />
 </main>
