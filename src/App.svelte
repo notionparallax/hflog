@@ -58,7 +58,7 @@
 <main class="app-main">
   <div class="page-title">
     <h1>Human Factors Log</h1>
-    <p class="page-subtitle">Confidential post-dive safety logging</p>
+    <p class="page-subtitle">Confidential post-dive safety logging. Normalising the discussion of deviance.</p>
   </div>
 
   <PreDiveState {state} />
