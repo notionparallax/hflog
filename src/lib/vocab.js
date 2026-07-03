@@ -319,10 +319,15 @@ export function getSuggestedQuestions(state) {
         const maxProx = Math.max(...events.map(e => e.proximity_barriers_remaining || 1));
         if (maxSev >= 4) REFLECTION_PROMPTS.event_high_severity.forEach(add);
         if (maxProx >= 4) REFLECTION_PROMPTS.event_high_proximity.forEach(add);
-    // Unconditional systemic prompt for significant events (HFACS upstream lens)
-    if (maxSev >= 3) {
-      add('Was there anything about the training, equipment, environment, or dive planning that made this event more likely to occur?');
+        // Unconditional systemic prompt for significant events (HFACS upstream lens)
+        if (maxSev >= 3) {
+            add('Was there anything about the training, equipment, environment, or dive planning that made this event more likely to occur?');
+        }
     }
+
+    // IMSAFEE concerns (any field ≥ 4, or ≥ 3 combined with an event)
+    if (imsafee) {
+        const max = Math.max(...Object.values(imsafee));
         if (max >= 4 || (max >= 3 && had_event)) {
             REFLECTION_PROMPTS.imsafee_high.forEach(add);
         }
