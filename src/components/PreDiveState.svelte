@@ -1,5 +1,5 @@
 <script>
-  import { IMSAFEE_FIELDS, TIME_PRESSURE_ANCHORS, SITE_FAMILIARITY, BUDDY_FAMILIARITY } from '../lib/vocab.js';
+  import { IMSAFEE_FIELDS, TIME_PRESSURE_ANCHORS, BRIEF_QUALITY_ANCHORS, TASK_COMPLEXITY_ANCHORS, PLAN_ADHERENCE_ANCHORS, SITE_FAMILIARITY, BUDDY_FAMILIARITY } from '../lib/vocab.js';
   let { state } = $props();
 
   // $derived array ensures Svelte tracks each property access.
@@ -82,6 +82,41 @@
     <span class="current-val" class:warn={state.time_pressure >= 4}>{state.time_pressure}</span>
     <span class="anchor-inline" class:warn={state.time_pressure >= 4}>{TIME_PRESSURE_ANCHORS[state.time_pressure]}</span>
     <span class="field-question">Was there pressure to dive within a specific timeframe?</span>
+  </div>
+
+  <div class="imsafee-field">
+    <span class="field-label">Brief quality</span>
+    <input type="range" min="1" max="5" step="1"
+      value={state.brief_quality}
+      oninput={(e) => { state.brief_quality = +e.target.value; }}
+    />
+    <span class="current-val">{state.brief_quality}</span>
+    <span class="anchor-inline">{BRIEF_QUALITY_ANCHORS[state.brief_quality]}</span>
+    <span class="field-question">How thorough was the pre-dive brief?</span>
+  </div>
+
+  <div class="imsafee-field">
+    <span class="field-label">Task complexity</span>
+    <input type="range" min="1" max="5" step="1"
+      value={state.task_complexity}
+      oninput={(e) => { state.task_complexity = +e.target.value; }}
+      class:warn={state.task_complexity >= 4}
+    />
+    <span class="current-val" class:warn={state.task_complexity >= 4}>{state.task_complexity}</span>
+    <span class="anchor-inline" class:warn={state.task_complexity >= 4}>{TASK_COMPLEXITY_ANCHORS[state.task_complexity]}</span>
+    <span class="field-question">How complex was this dive relative to your experience?</span>
+  </div>
+
+  <div class="imsafee-field">
+    <span class="field-label">Plan adherence</span>
+    <input type="range" min="1" max="5" step="1"
+      value={state.plan_adherence}
+      oninput={(e) => { state.plan_adherence = +e.target.value; }}
+      class:warn={state.plan_adherence >= 4}
+    />
+    <span class="current-val" class:warn={state.plan_adherence >= 4}>{state.plan_adherence}</span>
+    <span class="anchor-inline" class:warn={state.plan_adherence >= 4}>{PLAN_ADHERENCE_ANCHORS[state.plan_adherence]}</span>
+    <span class="field-question">Did you dive the plan as briefed?</span>
   </div>
 
   <hr />

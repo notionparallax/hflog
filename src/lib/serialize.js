@@ -41,7 +41,10 @@ export function serialize(state) {
 
   lines.push(`site_familiarity: ${state.site_familiarity ?? ''}`);
   lines.push(`buddy_familiarity: ${state.buddy_familiarity ?? ''}`);
+  lines.push(`brief_quality: ${state.brief_quality ?? 1}`);
   lines.push(`time_pressure: ${state.time_pressure}`);
+  lines.push(`task_complexity: ${state.task_complexity ?? 1}`);
+  lines.push(`plan_adherence: ${state.plan_adherence ?? 1}`);
   lines.push(state.new_kit ? `new_kit: "${escapeLine(state.new_kit_description)}"` : `new_kit: false`);
 
   if (had_event && state.events?.length > 0) {
@@ -60,6 +63,7 @@ export function serialize(state) {
 
   if (state.factors?.length > 0) lines.push(`factors: [${state.factors.join(', ')}]`);
   if (state.learning_note) lines.push(`learning: "${escapeLine(state.learning_note)}"`);
+  if (state.what_went_well) lines.push(`what_went_well: "${escapeLine(state.what_went_well)}"`);
 
   state.reflections?.forEach((r, i) => {
     lines.push(`reflection_${i + 1}_q: "${escapeLine(r.q)}"`);

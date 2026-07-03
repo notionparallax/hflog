@@ -18,11 +18,15 @@
       site_familiarity: '',
       buddy_familiarity: '',
       time_pressure: 1,
+      brief_quality: 1,
+      task_complexity: 1,
+      plan_adherence: 1,
       new_kit: false,
       new_kit_description: '',
       events: [],
       factors: [],
       learning_note: '',
+      what_went_well: '',
       reflections: [],
     };
   }

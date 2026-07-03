@@ -54,6 +54,16 @@
     + Log an event
   </button>
 
+  {#if state.events.length === 0}
+    <div class="what-went-well">
+      <label for="what_went_well">What went well?</label>
+      <p class="field-hint">What skills, behaviours, or planning choices protected this dive's outcome?</p>
+      <textarea id="what_went_well" rows="2"
+        placeholder="e.g. clear pre-dive brief, gas management, team communication..."
+        bind:value={state.what_went_well}></textarea>
+    </div>
+  {/if}
+
   {#if state.events.length > 0}
     <div class="event-factors">
       <h3>Contributing factors <span class="factors-subhead">across this dive's events</span></h3>
@@ -68,7 +78,7 @@
       <div class="field-row">
         <label for="learning">Learning note</label>
         <textarea id="learning" rows="2"
-          placeholder="What would you do differently? Any systemic factor worth noting?"
+          placeholder="What would you change about your own decision-making? What would you change about the system, environment, or training that made this more likely?"
           bind:value={state.learning_note}></textarea>
       </div>
     </div>
