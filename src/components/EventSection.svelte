@@ -54,15 +54,13 @@
     + Log an event
   </button>
 
-  {#if state.events.length === 0}
-    <div class="what-went-well">
-      <label for="what_went_well">What went well?</label>
-      <p class="field-hint">What skills, behaviours, or planning choices protected this dive's outcome?</p>
-      <textarea id="what_went_well" rows="2"
-        placeholder="e.g. clear pre-dive brief, gas management, team communication..."
-        bind:value={state.what_went_well}></textarea>
-    </div>
-  {/if}
+  <div class="what-went-well">
+    <label for="what_went_well">What went well?</label>
+    <p class="field-hint">What skills, behaviours, or planning choices protected this dive's outcome?</p>
+    <textarea id="what_went_well" rows="2"
+      placeholder="e.g. clear pre-dive brief, gas management, team communication..."
+      bind:value={state.what_went_well}></textarea>
+  </div>
 
   {#if state.events.length > 0}
     <div class="event-factors">
