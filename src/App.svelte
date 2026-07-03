@@ -33,7 +33,11 @@
 
   let state = $state(emptyState());
 
-  let suggestedQuestions = $derived(getSuggestedQuestions(state));
+  let suggestedQuestions = $derived(getSuggestedQuestions({
+    imsafee: state.imsafee,
+    events: state.events,
+    factors: state.factors,
+  }));
 
   $effect(() => {
     const qs = suggestedQuestions;
