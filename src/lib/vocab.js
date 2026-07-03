@@ -243,8 +243,7 @@ const REFLECTION_PROMPTS = {
     assertiveness:  ['Was there a moment where you had a concern but did not act on it?'],
     stress:         ['How did your stress level affect your performance during the dive?'],
     awareness:      ['What was your situational awareness like leading up to the event?'],
-    norms:          ['Was there a "this is just how we do it here" pattern at play?'],
-  },
+    norms:          ['Was there a "this is just how we do it here" pattern at play?'],    cold:           ['At what point did the cold start affecting your performance or judgement?'],  },
 };
 
 /**
@@ -277,7 +276,14 @@ export function getSuggestedQuestions(state) {
     }
 
     if (factors?.length > 0) {
-      factors.forEach(f => REFLECTION_PROMPTS.factor[f]?.forEach(add));
+      factors.forEach(f => {
+        const prompts = REFLECTION_PROMPTS.factor[f];
+        if (prompts) {
+          prompts.forEach(add);
+        } else {
+          add(`How did ${f} contribute to this event, and what would you do differently?`);
+        }
+      });
     }
 
     const maxSev = Math.max(...events.map(e => e.potential_severity || 1));
