@@ -120,11 +120,11 @@ export const TIME_PRESSURE_ANCHORS = [
 
 export const BRIEF_QUALITY_ANCHORS = [
   null,
-  'No brief — straight in',
-  'Quick verbal exchange',
-  'Standard briefing (plan, gas, limits, signals)',
-  'Thorough brief with contingencies discussed',
   'Full written plan, all contingencies, everyone confirmed understanding',
+  'Thorough brief with contingencies discussed',
+  'Standard briefing (plan, gas, limits, signals)',
+  'Quick verbal exchange',
+  'No brief — straight in',
 ];
 
 export const TASK_COMPLEXITY_ANCHORS = [
