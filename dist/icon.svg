@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="#005f73"/>
+  <!-- Wave layers -->
+  <path d="M0 340 Q 80 310 160 340 Q 240 370 320 340 Q 400 310 512 340 L512 512 L0 512 Z"
+        fill="#0a9396" opacity="0.55"/>
+  <path d="M0 390 Q 90 365 180 390 Q 280 418 380 390 Q 450 370 512 390 L512 512 L0 512 Z"
+        fill="white" opacity="0.12"/>
+  <!-- HF logotype -->
+  <text x="256" y="280"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="-apple-system,'Segoe UI',system-ui,sans-serif"
+    font-weight="800"
+    font-size="230"
+    letter-spacing="-10"
+    fill="white">HF</text>
+</svg>
