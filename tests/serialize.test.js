@@ -39,5 +39,6 @@ describe('round-trip', () => {
 describe('parse edge cases', () => {
   it('null with no block', () => expect(parse('Notes.')).toBeNull());
   it('null with missing close sentinel', () => expect(parse('[DIVE-HF v1]\nhad_event: false')).toBeNull());
+  it('ignores a stray close sentinel before the block', () => { const r = parse('old [/DIVE-HF] note\n' + serialize(BASE) + '\nAfter.'); expect(r.before).toBe('old [/DIVE-HF] note\n'); expect(r.after.trim()).toBe('After.'); expect(r.dict.report_id).toBe('test-uuid-1234'); });
   it('no throw on unknown version', () => expect(()=>parse('[DIVE-HF v99]\nhad_event: false\n[/DIVE-HF]')).not.toThrow());
 });

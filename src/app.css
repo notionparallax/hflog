@@ -338,7 +338,7 @@ hr { border: none; border-top: 1px solid var(--color-border); margin: 18px 0; }
 }
 .load-section label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
 .load-section textarea { font-family: var(--font-mono); font-size: 12px; }
-.load-error { color: var(--color-incident); font-size: 12px; margin: 6px 0 0; }
+.load-error { color: var(--color-incident); font-size: 12px; margin: -6px 0 10px; }
 .load-section-actions { display: flex; gap: 8px; margin-top: 10px; }
 .load-cancel-btn {
   padding: 7px 14px;
@@ -502,3 +502,12 @@ hr { border: none; border-top: 1px solid var(--color-border); margin: 18px 0; }
   margin-left: 3px;
 }
 .event-scales { margin: 10px 0 12px; }
+
+/* Systemic factor tier label */
+.factors-tier-label { font-size: 12px; font-weight: 600; color: #52525b; margin: 0 0 6px; }
+
+/* Nudge when an event has no outcome selected */
+.outcome-hint { font-size: 12px; color: #b45309; font-style: italic; margin-top: 2px; }
+
+/* Shown when the current block matches what was last copied */
+.copied-note { font-size: 12px; color: #15803d; margin: -6px 0 10px; }

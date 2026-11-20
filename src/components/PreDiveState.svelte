@@ -29,8 +29,9 @@
   <div class="imsafee-fields">
     {#each IMSAFEE_FIELDS as field, i}
       <div class="imsafee-field">
-        <span class="field-label">{field.label}</span>
+        <label class="field-label" for="imsafee-{field.key}">{field.label}</label>
         <input
+          id="imsafee-{field.key}"
           type="range" min="1" max="5" step="1"
           value={imsafeeVals[i]}
           oninput={(e) => { state.imsafee[field.key] = +e.target.value; }}
@@ -72,8 +73,8 @@
   <hr />
 
   <div class="imsafee-field">
-    <span class="field-label">Time pressure</span>
-    <input
+    <label class="field-label" for="time_pressure">Time pressure</label>
+    <input id="time_pressure"
       type="range" min="1" max="5" step="1"
       value={state.time_pressure}
       oninput={(e) => { state.time_pressure = +e.target.value; }}
@@ -85,19 +86,20 @@
   </div>
 
   <div class="imsafee-field">
-    <span class="field-label">Brief quality</span>
-    <input type="range" min="1" max="5" step="1"
+    <label class="field-label" for="brief_quality">Brief quality</label>
+    <input id="brief_quality" type="range" min="1" max="5" step="1"
       value={state.brief_quality}
       oninput={(e) => { state.brief_quality = +e.target.value; }}
+      class:warn={state.brief_quality >= 4}
     />
-    <span class="current-val">{state.brief_quality}</span>
-    <span class="anchor-inline">{BRIEF_QUALITY_ANCHORS[state.brief_quality]}</span>
+    <span class="current-val" class:warn={state.brief_quality >= 4}>{state.brief_quality}</span>
+    <span class="anchor-inline" class:warn={state.brief_quality >= 4}>{BRIEF_QUALITY_ANCHORS[state.brief_quality]}</span>
     <span class="field-question">How thorough was the pre-dive brief?</span>
   </div>
 
   <div class="imsafee-field">
-    <span class="field-label">Task complexity</span>
-    <input type="range" min="1" max="5" step="1"
+    <label class="field-label" for="task_complexity">Task complexity</label>
+    <input id="task_complexity" type="range" min="1" max="5" step="1"
       value={state.task_complexity}
       oninput={(e) => { state.task_complexity = +e.target.value; }}
       class:warn={state.task_complexity >= 4}
@@ -108,8 +110,8 @@
   </div>
 
   <div class="imsafee-field">
-    <span class="field-label">Plan adherence</span>
-    <input type="range" min="1" max="5" step="1"
+    <label class="field-label" for="plan_adherence">Plan adherence</label>
+    <input id="plan_adherence" type="range" min="1" max="5" step="1"
       value={state.plan_adherence}
       oninput={(e) => { state.plan_adherence = +e.target.value; }}
       class:warn={state.plan_adherence >= 4}

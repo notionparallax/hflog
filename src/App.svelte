@@ -31,7 +31,47 @@
     };
   }
 
-  let state = $state(emptyState());
+  // ─── Draft persistence ──────────────────────────────────────────────────────
+  // The form is saved to this browser as you go, so a phone closing the app in
+  // the background doesn't lose a half-written report. It is cleared only by
+  // "Start next dive". Storage can be unavailable (private mode), so every
+  // access is wrapped and the app works without it.
+  const DRAFT_KEY = 'hflog-draft-v1';
+  const COPIED_KEY = 'hflog-last-copied-v1';
+
+  function readStorage(key) {
+    try { return localStorage.getItem(key); } catch { return null; }
+  }
+  function writeStorage(key, value) {
+    try { localStorage.setItem(key, value); } catch { /* storage unavailable */ }
+  }
+
+  function loadDraft() {
+    const base = emptyState();
+    try {
+      const d = JSON.parse(readStorage(DRAFT_KEY));
+      if (!d || typeof d !== 'object' || !d.report_id) return base;
+      return {
+        ...base,
+        ...d,
+        imsafee: { ...base.imsafee, ...d.imsafee },
+        events: Array.isArray(d.events) ? d.events : [],
+        factors: Array.isArray(d.factors) ? d.factors : [],
+        reflections: Array.isArray(d.reflections) ? d.reflections : [],
+      };
+    } catch {
+      return base;
+    }
+  }
+
+  let state = $state(loadDraft());
+
+  // The block text as it was last copied (or loaded). If the current block
+  // matches, the diver already has it and starting a new dive loses nothing.
+  let lastCopied = $state(readStorage(COPIED_KEY) ?? '');
+
+  $effect(() => { writeStorage(DRAFT_KEY, JSON.stringify(state)); });
+  $effect(() => { writeStorage(COPIED_KEY, lastCopied); });
 
   let suggestedQuestions = $derived(getSuggestedQuestions({
     imsafee: state.imsafee,
@@ -49,13 +89,24 @@
 
   let blockString = $derived(serialize(state));
 
-  function reset() {
+  // True when nothing but the report_id differs from a fresh form.
+  function isPristine() {
+    const { report_id: _a, ...current } = $state.snapshot(state);
+    const { report_id: _b, ...fresh } = emptyState();
+    return JSON.stringify(current) === JSON.stringify(fresh);
+  }
+
+  function startNextDive() {
+    const unsaved = blockString !== lastCopied && !isPristine();
+    if (unsaved && !confirm("This report hasn't been copied since it last changed. Start a new dive anyway?")) return;
     const s = emptyState();
     Object.assign(state, s);
     state.imsafee = { ...s.imsafee };
     state.events = [];
     state.factors = [];
     state.reflections = [];
+    lastCopied = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function loadFromBlock(dict) {
@@ -106,6 +157,8 @@
     state.learning_note  = dict.learning        || '';
     state.what_went_well = dict.what_went_well  || '';
     state.reflections    = dict.reflections?.map(r => ({ q: r.q || '', a: r.a || '' })) ?? [];
+    // A loaded block is already in the diver's log, so treat it as copied.
+    lastCopied = serialize(state);
   }
 </script>
 
@@ -118,5 +171,11 @@
   <PreDiveState {state} />
   <EventSection {state} {newEvent} />
   <ReflectionPrompts {state} questions={suggestedQuestions} />
-  <OutputBlock {blockString} onload={loadFromBlock} />
+  <OutputBlock
+    {blockString}
+    copiedCurrent={blockString === lastCopied}
+    onload={loadFromBlock}
+    oncopy={() => { lastCopied = blockString; }}
+    onnext={startNextDive}
+  />
 </main>

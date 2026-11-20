@@ -31,13 +31,17 @@
           <option value={opt.value}>{opt.label}</option>
         {/each}
       </select>
+      {#if !event.outcome}
+        <p class="outcome-hint">Pick an outcome. Without one, this is recorded as a near miss.</p>
+      {/if}
     </div>
   </div>
 
   <div class="imsafee-fields event-scales">
     <div class="imsafee-field">
-      <span class="field-label event-scale-label">Severity</span>
+      <label class="field-label event-scale-label" for="ev-sev-{index}">Severity</label>
       <input
+        id="ev-sev-{index}"
         type="range" min="1" max="5" step="1"
         value={event.potential_severity}
         oninput={(e) => { event.potential_severity = +e.target.value; }}
@@ -47,8 +51,9 @@
       <span class="anchor-inline" class:warn={event.potential_severity >= 4}>{SEVERITY_ANCHORS[event.potential_severity]}</span>
     </div>
     <div class="imsafee-field">
-      <span class="field-label event-scale-label">Proximity</span>
+      <label class="field-label event-scale-label" for="ev-prox-{index}">Proximity</label>
       <input
+        id="ev-prox-{index}"
         type="range" min="1" max="5" step="1"
         value={event.proximity_barriers_remaining}
         oninput={(e) => { event.proximity_barriers_remaining = +e.target.value; }}

@@ -1,5 +1,5 @@
-// serialize.js — CDAA-HF block serializer and parser.
-// Block lives inside Subsurface Notes: [CDAA-HF v1] ... [/CDAA-HF]
+// serialize.js — DIVE-HF block serializer and parser.
+// Block lives inside the dive log Notes field: [DIVE-HF v1] ... [/DIVE-HF]
 // Identity fields are never written here (hard boundary, not a filter).
 
 const SCHEMA_VERSION = 1;
@@ -24,7 +24,7 @@ function escapeLine(str) {
 }
 
 /**
- * Serialize form state to a CDAA-HF block string.
+ * Serialize form state to a DIVE-HF block string.
  */
 export function serialize(state) {
   const lines = [];
@@ -75,7 +75,7 @@ export function serialize(state) {
 }
 
 /**
- * Extract and parse a CDAA-HF block from notes text.
+ * Extract and parse a DIVE-HF block from notes text.
  * Returns { dict, before, after, version } or null if no block found.
  * Warns (never throws) on unknown schema version.
  */
@@ -84,15 +84,17 @@ export function parse(notes) {
   const openMatch = notes.match(openRe);
   if (!openMatch) return null;
 
-  const closeIdx = notes.indexOf(SENTINEL_CLOSE);
+  const openIdx = openMatch.index;
+  // Search for the close sentinel only after the open one, so a stray
+  // [/DIVE-HF] earlier in the notes can't truncate the block.
+  const closeIdx = notes.indexOf(SENTINEL_CLOSE, openIdx + openMatch[0].length);
   if (closeIdx === -1) return null;
 
   const version = parseInt(openMatch[1], 10);
   if (version !== SCHEMA_VERSION) {
-    console.warn(`[CDAA-HF] Unknown schema version ${version}; parsing may be incomplete.`);
+    console.warn(`[DIVE-HF] Unknown schema version ${version}; parsing may be incomplete.`);
   }
 
-  const openIdx = notes.indexOf(openMatch[0]);
   const before = notes.slice(0, openIdx);
   const after = notes.slice(closeIdx + SENTINEL_CLOSE.length);
   const body = notes.slice(openIdx + openMatch[0].length, closeIdx);

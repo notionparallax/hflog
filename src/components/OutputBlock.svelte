@@ -1,6 +1,6 @@
 <script>
   import { parse } from '../lib/serialize.js';
-  let { blockString, onload } = $props();
+  let { blockString, copiedCurrent, onload, oncopy, onnext } = $props();
   let copied = $state(false);
   let loadMode = $state(false);
   let pasteText = $state('');
@@ -19,6 +19,7 @@
       document.body.removeChild(el);
     }
     copied = true;
+    oncopy?.();
     setTimeout(() => { copied = false; }, 2000);
   }
 
@@ -52,7 +53,13 @@
         Load a saved block
       </button>
     {/if}
+    <button type="button" class="load-toggle-btn" onclick={onnext}>
+      Start next dive
+    </button>
   </div>
+  {#if copiedCurrent}
+    <p class="copied-note">✓ This version has been copied.</p>
+  {/if}
 
   {#if loadMode}
     <div class="load-section">
