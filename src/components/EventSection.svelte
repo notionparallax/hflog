@@ -4,6 +4,11 @@
 
   let { state, newEvent } = $props();
 
+  const FACTOR_GROUPS = [
+    { label: null, factors: FACTORS.filter(f => f.tier !== 'systemic') },
+    { label: 'Systemic', factors: FACTORS.filter(f => f.tier === 'systemic') },
+  ];
+
   function addEvent() {
     state.events = [...state.events, newEvent()];
   }
@@ -65,14 +70,17 @@
   {#if state.events.length > 0}
     <div class="event-factors">
       <h3>Contributing factors <span class="factors-subhead">across this dive's events</span></h3>
-      <div class="factors-grid">
-        {#each FACTORS as factor}
-          <button type="button" class="factor-chip" class:active={state.factors.includes(factor.value)}
-            onclick={() => toggleFactor(factor.value)}>
-            {factor.label}
-          </button>
-        {/each}
-      </div>
+      {#each FACTOR_GROUPS as group}
+        {#if group.label}<p class="factors-tier-label">{group.label}</p>{/if}
+        <div class="factors-grid">
+          {#each group.factors as factor}
+            <button type="button" class="factor-chip" class:active={state.factors.includes(factor.value)}
+              onclick={() => toggleFactor(factor.value)}>
+              {factor.label}
+            </button>
+          {/each}
+        </div>
+      {/each}
       <div class="field-row">
         <label for="learning">Learning note</label>
         <textarea id="learning" rows="2"

@@ -1,5 +1,5 @@
 // vocab.js — all controlled vocabularies, anchor text, and reflection prompts.
-// Everything that will change as CDAA refines the taxonomy lives here.
+// Everything that will change as the taxonomy is refined lives here.
 
 export const DIVE_TYPES = [
     { value: 'cave', label: 'Cave' },
@@ -206,7 +206,7 @@ export const OUTCOMES = [
     { value: 'fatality', label: 'Fatality' },
 ];
 
-// ─── Human factors — Dirty Dozen ─────────────────────────────────────────────
+// ─── Human factors — Dirty Dozen + Cold, then a systemic tier ────────────────
 
 export const FACTORS = [
     { value: 'communication', label: 'Communication' },
@@ -220,7 +220,13 @@ export const FACTORS = [
     { value: 'assertiveness', label: 'Assertiveness' },
     { value: 'stress', label: 'Stress' },
     { value: 'awareness', label: 'Awareness' },
-    { value: 'norms', label: 'Norms' }, { value: 'cold', label: 'Cold' },];
+    { value: 'norms', label: 'Norms' },
+    { value: 'cold', label: 'Cold' },
+    // Systemic tier: points upstream of the individual diver.
+    { value: 'training_gap', label: 'Training gap', tier: 'systemic' },
+    { value: 'equip_design', label: 'Equipment design', tier: 'systemic' },
+    { value: 'org_pressure', label: 'Organisational pressure', tier: 'systemic' },
+];
 
 // ─── Reflection prompts ───────────────────────────────────────────────────────
 // AI augmentation hook: replace getSuggestedQuestions() with a function that
@@ -270,8 +276,11 @@ const REFLECTION_PROMPTS = {
         assertiveness: ['Was there a moment where you had a concern but did not act on it?'],
         stress: ['How did your stress level affect your performance during the dive?'],
         awareness: ['What was your situational awareness like leading up to the event?'],
-        norms: ['Was there a "this is just how we do it here" pattern at play?'], 
+        norms: ['Was there a "this is just how we do it here" pattern at play?'],
         cold: ['At what point did the cold start affecting your performance or judgement?'],
+        training_gap: ["What hadn't your training prepared you for?"],
+        equip_design: ['Did the kit make the error easier to make, or harder to spot?'],
+        org_pressure: ['Who or what was pushing for the dive to go ahead?'],
     },
 };
 

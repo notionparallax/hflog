@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getSuggestedQuestions } from '../src/lib/vocab.js';
+import { getSuggestedQuestions, FACTORS } from '../src/lib/vocab.js';
 
 // Helper: build a minimal state object for getSuggestedQuestions
 function state({
@@ -50,6 +50,15 @@ describe('getSuggestedQuestions', () => {
       for (const f of ['training_gap', 'equip_design', 'org_pressure']) {
         const qs = getSuggestedQuestions(state({ events: [event()], factors: [f] }));
         expect(qs.length, `expected prompt for factor "${f}"`).toBeGreaterThan(0);
+        // Must be a written prompt, not the generic fallback that echoes the key
+        expect(qs.some(q => q.startsWith(`How did ${f} contribute`)), `"${f}" fell through to the fallback`).toBe(false);
+      }
+    });
+
+    it('every factor offered in the UI has a written prompt', () => {
+      for (const { value } of FACTORS) {
+        const qs = getSuggestedQuestions(state({ events: [event()], factors: [value] }));
+        expect(qs.some(q => q.startsWith(`How did ${value} contribute`)), `"${value}" fell through to the fallback`).toBe(false);
       }
     });
 
